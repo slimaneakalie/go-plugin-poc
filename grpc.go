@@ -33,7 +33,7 @@ type GRPCServer struct {
 func (s *GRPCServer) BatchUpsertUsers(ctx context.Context, request *proto.BatchUpsertUsersRequest) (*proto.BatchUpsertUsersResponse, error) {
 	var users []*User
 	for _, u := range request.Users {
-		users = append(users, User{
+		users = append(users, &User{
 			Id:        u.Id,
 			FullName:  u.FullName,
 			FirstName: u.FirstName,
@@ -43,14 +43,24 @@ func (s *GRPCServer) BatchUpsertUsers(ctx context.Context, request *proto.BatchU
 		})
 	}
 	req := &UpsertUsersRequest{
-		Users:    request.Users,
+		Users:    users,
 		Mappings: request.Mappings,
 		Settings: request.Settings,
 	}
 
 	resp := s.Impl.BatchUpsertUsers(req)
+	var errors []*proto.ResponseError
+	for _, err := range resp.Errors {
+		errors = append(errors, &proto.ResponseError{
+			Code:    err.Code,
+			UserId:  err.UserId,
+			Message: err.Message,
+		})
+	}
+
 	return &proto.BatchUpsertUsersResponse{
 		Status: resp.Status,
+		Errors: errors,
 	}, nil
 }
 

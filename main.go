@@ -43,7 +43,7 @@ func main() {
 	// implementation but is in fact over an RPC connection.
 	pl := raw.(DestinationPlugin)
 
-	reqExample := UpsertUsersRequest{
+	reqExample := &UpsertUsersRequest{
 		Users: []*User{
 			{Id: "id1", FullName: "full name 1", FirstName: "first name 1"},
 			{Id: "id2", FullName: "full name 2", FirstName: "first name 2"},
@@ -53,21 +53,11 @@ func main() {
 		Settings: []byte(`{"skey1": "value1", "skey2": 153}`),
 	}
 
-	os.Args = os.Args[1:]
-	switch os.Args[0] {
-	case "upsert":
-		pl.BatchUpsertUsers()
-
-	case "update":
-
-	case "delete":
-
-	default:
-		fmt.Printf("Please only use 'upsert', 'update', or 'delete', given: %q", os.Args[0])
+	resp := pl.BatchUpsertUsers(reqExample)
+	if len(resp.Errors) > 0 {
+		fmt.Println("Error:", resp.Errors)
 		os.Exit(1)
 	}
-
-	os.Exit(0)
 }
 
 var handshake = plugin.HandshakeConfig{
