@@ -1,0 +1,21 @@
+version: 3
+tasks:
+  genproto:
+    cmds:
+      - protoc --go_out=./pb --go_opt=paths=source_relative --go-grpc_out=./pb ./proto/destination.proto
+
+  js_plugin:
+    cmds:
+      - task run
+    env:
+      DEST_PLUGIN_CMD: cd plugin-node-js && npm run --silent start
+
+  build:
+    cmds:
+      - go build -o poc.out .
+
+  run:
+    deps:
+      - build
+    cmds:
+      - ./poc.out

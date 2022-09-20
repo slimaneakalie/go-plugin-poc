@@ -14,8 +14,10 @@ export class HealthServerImpl implements IHealthServer {
     }
 
     watch(call: ServerWritableStream<HealthCheckRequest, HealthCheckResponse>): void {
-        const response = new HealthCheckResponse();
-        response.setStatus(ServingStatus.SERVING);
-        call.write(response);
+        call.on('data', function() {
+            const response = new HealthCheckResponse();
+            response.setStatus(ServingStatus.SERVING);
+            call.write(response);
+        });
     }
 }

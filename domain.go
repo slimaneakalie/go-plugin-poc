@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/slimaneakalie/go-plugin-poc/proto"
+	"github.com/slimaneakalie/go-plugin-poc/pb/proto"
 )
 
 type UpsertUsersRequest struct {

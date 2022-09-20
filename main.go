@@ -2,44 +2,43 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"log"
 	"os"
 	"os/exec"
+	"time"
 
 	"github.com/hashicorp/go-plugin"
 )
 
 func main() {
 	// We don't want to see the plugin logs.
-	log.SetOutput(ioutil.Discard)
+	//log.SetOutput(ioutil.Discard)
 
 	// We're a host. Start by launching the plugin process.
 	client := plugin.NewClient(&plugin.ClientConfig{
 		HandshakeConfig: handshake,
 		Plugins: map[string]plugin.Plugin{
-			"dest_grpc": &DestPluginImpl{},
+			"dest_grpc": &DestGRPCPlugin{},
 		},
-		Cmd:              exec.Command(os.Getenv("DEST_PLUGIN_CMD")),
-		AllowedProtocols: []plugin.Protocol{plugin.ProtocolNetRPC, plugin.ProtocolGRPC},
+		Cmd:              exec.Command("sh", "-c", os.Getenv("DEST_PLUGIN_CMD")),
+		AllowedProtocols: []plugin.Protocol{plugin.ProtocolGRPC},
+		StartTimeout:     30 * time.Second,
 	})
-	defer client.Kill()
 
 	// Connect via RPC
-	rpcClient, err := client.Client()
+	gRpcClient, err := client.Client()
 	if err != nil {
 		fmt.Println("Error:", err.Error())
 		os.Exit(1)
 	}
 
 	// Request the plugin
-	raw, err := rpcClient.Dispense("dest_grpc")
+	raw, err := gRpcClient.Dispense("dest_grpc")
 	if err != nil {
 		fmt.Println("Error:", err.Error())
 		os.Exit(1)
 	}
 
-	// We should have a KV store now! This feels like a normal interface
+	// We should have a destination store now! This feels like a normal interface
 	// implementation but is in fact over an RPC connection.
 	pl := raw.(DestinationPlugin)
 
@@ -56,10 +55,11 @@ func main() {
 	resp := pl.BatchUpsertUsers(reqExample)
 	if len(resp.Errors) > 0 {
 		fmt.Println("Error:", resp.Errors)
-		os.Exit(1)
+	} else {
+		fmt.Println("Response: ", resp)
 	}
 
-	fmt.Println("Success: ", resp)
+	plugin.CleanupClients()
 }
 
 var handshake = plugin.HandshakeConfig{
