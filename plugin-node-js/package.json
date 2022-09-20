@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "gen": "sh scripts/grpc_gen.sh",
+    "generate": "sh scripts/grpc_gen.sh",
     "start": "ts-node server/index.ts"
   },
   "keywords": [],

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6b349657-4217-472f-ba1a-f779c473ab52" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../plugin-node-js/server/health.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proto/health.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../plugin-node-js/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../plugin-node-js/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../plugin-node-js/server/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plugin-node-js/server/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../plugin-node-js/server/service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../plugin-node-js/server/destination.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proto/destination.pb.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../proto/destination_grpc.pb.go" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2F1lH4XkI1OPynOSiHarnzi4r6W" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/slimane/Desktop/Workspace-Journify/go-plugin-poc/plugin-node-js-2",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b349657-4217-472f-ba1a-f779c473ab52" name="Changes" comment="" />
+      <created>1663667380743</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1663667380743</updated>
+      <workItem from="1663667382241" duration="1929000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

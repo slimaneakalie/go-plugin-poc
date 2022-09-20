@@ -1,12 +1,14 @@
 import { Server, ServerCredentials } from "@grpc/grpc-js";
 import {DestinationPluginService} from "../proto/destination_grpc_pb";
-import { DestinationPluginImpl } from "./service";
+import { DestinationPluginImpl } from "./destination";
+import {HealthService} from "../proto/health_grpc_pb";
+import {HealthServerImpl} from "./health";
 
 const server = new Server();
 server.addService(DestinationPluginService, new DestinationPluginImpl());
+server.addService(HealthService, new HealthServerImpl());
 
 // for more info: check https://github.com/hashicorp/go-plugin/blob/master/docs/guide-plugin-write-non-go.md
-
 const PLUGIN_CORE_PROTOCOL_VERSION = "1";
 const PLUGIN_APP_PROTOCOL_VERSION = "1";
 const PLUGIN_NETWORK_TYPE = "tcp";
