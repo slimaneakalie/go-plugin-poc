@@ -19,7 +19,7 @@ export class DestinationPluginImpl implements IDestinationPluginServer {
     }
 
     batchUpsertUsers(call: ServerUnaryCall<BatchUpsertUsersRequest, BatchUpsertUsersResponse>, callback: sendUnaryData<BatchUpsertUsersResponse>): void {
-        console.log("request: ", call.request)
+        console.log("request: ", call.request);
         const resp = new BatchUpsertUsersResponse()
         resp.setStatus(OperationStatus.SUCCESS)
         callback(null, resp)

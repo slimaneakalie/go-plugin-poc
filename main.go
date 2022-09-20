@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"time"
@@ -11,7 +12,7 @@ import (
 
 func main() {
 	// We don't want to see the plugin logs.
-	//log.SetOutput(ioutil.Discard)
+	log.SetOutput(os.Stdout)
 
 	// We're a host. Start by launching the plugin process.
 	client := plugin.NewClient(&plugin.ClientConfig{
@@ -20,8 +21,12 @@ func main() {
 			"dest_grpc": &DestGRPCPlugin{},
 		},
 		Cmd:              exec.Command("sh", "-c", os.Getenv("DEST_PLUGIN_CMD")),
-		AllowedProtocols: []plugin.Protocol{plugin.ProtocolGRPC},
+		AllowedProtocols: []plugin.Protocol{plugin.ProtocolNetRPC, plugin.ProtocolGRPC},
 		StartTimeout:     30 * time.Second,
+		SyncStdout:       os.Stdout,
+		SyncStderr:       os.Stderr,
+		Stderr:           os.Stderr,
+		Managed:          true,
 	})
 
 	// Connect via RPC
