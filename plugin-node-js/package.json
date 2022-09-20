@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "gen": "sh scripts/grpc_gen.sh"
+    "gen": "sh scripts/grpc_gen.sh",
+    "start": "ts-node server/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,6 @@
     "typescript": "^4.8.3"
   },
   "dependencies": {
-    "grpc": "^1.24.11"
+    "@grpc/grpc-js": "^1.7.0"
   }
 }

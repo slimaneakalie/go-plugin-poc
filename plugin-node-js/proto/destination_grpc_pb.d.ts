@@ -4,7 +4,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import * as grpc from "grpc";
+import * as grpc from "@grpc/grpc-js";
 import * as destination_pb from "./destination_pb";
 
 interface IDestinationPluginService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
@@ -43,7 +43,7 @@ interface IDestinationPluginService_IBatchDeleteUsers extends grpc.MethodDefinit
 
 export const DestinationPluginService: IDestinationPluginService;
 
-export interface IDestinationPluginServer {
+export interface IDestinationPluginServer extends grpc.UntypedServiceImplementation {
     batchUpsertUsers: grpc.handleUnaryCall<destination_pb.BatchUpsertUsersRequest, destination_pb.BatchUpsertUsersResponse>;
     batchUpdateUsers: grpc.handleUnaryCall<destination_pb.BatchUpdateUsersRequest, destination_pb.BatchUpdateUsersResponse>;
     batchDeleteUsers: grpc.handleUnaryCall<destination_pb.BatchDeleteUsersRequest, destination_pb.BatchDeleteUsersResponse>;
@@ -62,7 +62,7 @@ export interface IDestinationPluginClient {
 }
 
 export class DestinationPluginClient extends grpc.Client implements IDestinationPluginClient {
-    constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
+    constructor(address: string, credentials: grpc.ChannelCredentials, options?: Partial<grpc.ClientOptions>);
     public batchUpsertUsers(request: destination_pb.BatchUpsertUsersRequest, callback: (error: grpc.ServiceError | null, response: destination_pb.BatchUpsertUsersResponse) => void): grpc.ClientUnaryCall;
     public batchUpsertUsers(request: destination_pb.BatchUpsertUsersRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: destination_pb.BatchUpsertUsersResponse) => void): grpc.ClientUnaryCall;
     public batchUpsertUsers(request: destination_pb.BatchUpsertUsersRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: destination_pb.BatchUpsertUsersResponse) => void): grpc.ClientUnaryCall;

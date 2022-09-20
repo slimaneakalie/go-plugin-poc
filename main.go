@@ -20,7 +20,7 @@ func main() {
 		Plugins: map[string]plugin.Plugin{
 			"dest_grpc": &DestPluginImpl{},
 		},
-		Cmd:              exec.Command("sh", "-c", os.Getenv("DEST_PLUGIN_PATH")),
+		Cmd:              exec.Command(os.Getenv("DEST_PLUGIN_CMD")),
 		AllowedProtocols: []plugin.Protocol{plugin.ProtocolNetRPC, plugin.ProtocolGRPC},
 	})
 	defer client.Kill()
@@ -58,6 +58,8 @@ func main() {
 		fmt.Println("Error:", resp.Errors)
 		os.Exit(1)
 	}
+
+	fmt.Println("Success: ", resp)
 }
 
 var handshake = plugin.HandshakeConfig{

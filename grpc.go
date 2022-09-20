@@ -73,3 +73,5 @@ func (s *GRPCServer) BatchDeleteUsers(ctx context.Context, request *proto.BatchD
 	//TODO implement me
 	panic("implement me")
 }
+
+// TODO: Add a go client interface

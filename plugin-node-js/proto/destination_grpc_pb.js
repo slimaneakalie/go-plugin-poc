@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var destination_pb = require('./destination_pb.js');
 
 function serialize_proto_BatchDeleteUsersRequest(arg) {
